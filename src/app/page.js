@@ -479,27 +479,12 @@ function App() {
   const todosState = useTodosStatus();
   const noticeSnackbarState = useNoticeSnackbarStatus();
 
-  // React.useEffect(() => {
-  //   todosState.addTodo('스쿼트\n런지');
-  //   todosState.addTodo('벤치');
-  //   todosState.addTodo('데드');
-  // }, []);
   React.useEffect(() => {
     todosState.addTodo('스쿼트\n런지');
     todosState.addTodo('벤치');
     todosState.addTodo('데드');
-    const storedTodos = localStorage.getItem('todos');
-    if (storedTodos) {
-      const parsedTodos = JSON.parse(storedTodos);
-      parsedTodos.forEach((todo) => todosState.addTodo(todo.content));
-    }
   }, []);
 
-  // todosState.todos가 변경될 때마다 로컬 스토리지에 데이터를 저장함
-  // 로컬스토리지에 저장을 한다는데 뭔지 모르겠음...
-  React.useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todosState.todos));
-  }, [todosState.todos]);
   return (
     <>
       <AppBar position="fixed" onClick={() => noticeSnackbarState.open('abc')}>
